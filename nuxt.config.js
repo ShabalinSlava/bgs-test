@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/node_modules/bootstrap/dist/css/bootstrap.min.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -33,6 +34,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
