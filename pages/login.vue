@@ -35,9 +35,6 @@
             counter
             @click:append="show1 = !show1"
           ></v-text-field>
-        <p>
-            <nuxt-link to="/">На главную страницу</nuxt-link>
-        </p>
         <v-btn class="mr-4" type='submit'>Войти</v-btn>
         <v-btn @click="clear">Очистить</v-btn>
     </form>
