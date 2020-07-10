@@ -15,7 +15,7 @@ export const actions = {
   login({commit}) {
     commit('setToken', 'truetoken')
   },
-  logot({commit}) {
+  logout({commit}) {
     commit('clearToken')
   }
 }

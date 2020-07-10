@@ -13,7 +13,8 @@
   "dependencies": {
     "boostrap": "^2.0.0",
     "bootstrap": "^4.5.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "sone-nuxt-module-vuelidate": "^0.1.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.2"
