@@ -10,8 +10,8 @@
             <v-col class="py-0">
                 <v-list-item color="rgba(0, 0, 0, .4)" dark>
                     <v-list-item-content>
-                        <v-list-item-title class="title">Имя</v-list-item-title>
-                        <v-list-item-subtitle>Почта</v-list-item-subtitle>
+                        <v-list-item-title class="title">{{user.name}}</v-list-item-title>
+                        <v-list-item-subtitle>{{user.email}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-col>
@@ -24,6 +24,14 @@
 export default {
     middleware: ['auth'],
     layout: 'main',
+    // computed: {
+    //   hasUser() {
+    //     return this.$store.getters.hasUser
+    //   }
+    // },
+    // mounted() {
+    //   this.$store.dispatch('getUser')
+    // }
 
 }
 </script>

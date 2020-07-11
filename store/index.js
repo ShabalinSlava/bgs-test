@@ -1,5 +1,6 @@
 export const state = () => ({
-  token: null
+  token: null,
+  /* user: {} */
 })
 
 export const mutations = {
@@ -8,7 +9,10 @@ export const mutations = {
   },
   clearToken(state) {
     state.token = null
-  }
+  },
+  // updateUser(state, user) {
+  //   state.user = user
+  // }
 }
 
 export const actions = {
@@ -17,9 +21,13 @@ export const actions = {
   },
   logout({commit}) {
     commit('clearToken')
-  }
+  },
+  // getUser({commit}) {
+  //   commit('updateName')
+  // }
 }
 
 export const getters = {
-  hasToken: s => !!s.token
+  hasToken: s => !!s.token,
+  /* hasUser: s => s.user */
 }

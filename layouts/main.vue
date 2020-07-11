@@ -42,8 +42,3 @@ export default {
 }
 </script>
 
-<style scoped>
-  .v-toolbar__content, .v-toolbar__extension {
-    justify-content: space-between;
-  }
-</style>
