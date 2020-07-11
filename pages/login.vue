@@ -4,7 +4,7 @@
         Нужно войти в систему
     </div>
     <h1>Войти в систему</h1>
-    <form @submit.prevent="onSubmit">
+    <form>
         <v-text-field v-model="name"
             :error-messages="nameErrors"
             :counter="20" label="Имя"
@@ -21,21 +21,19 @@
             @blur="$v.email.$touch()"
         ></v-text-field>
 
-        <v-text-field
-            v-model="password"
+        <v-text-field v-model="password"
+            :error-messages="passwordErrors"
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]"
             :type="show1 ? 'text' : 'password'"
             name="input-10-1"
             label="Пароль"
-            hint="Не менее 8 символов"
             required
             @input="$v.password.$touch()"
             @blur="$v.password.$touch()"
             counter
             @click:append="show1 = !show1"
           ></v-text-field>
-        <v-btn class="mr-4" type='submit'>Войти</v-btn>
+        <v-btn class="mr-4" @click.prevent="submit">Войти</v-btn>
         <v-btn @click="clear">Очистить</v-btn>
     </form>
 </section>
@@ -43,24 +41,20 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, maxLength, email } from 'vuelidate/lib/validators'
+import { required, maxLength, minLength, email } from 'vuelidate/lib/validators'
 export default {
     mixins: [validationMixin],
     layout: 'empty',
     validations: {
         name: { required, maxLength: maxLength(20) },
         email: { required, email },
-        password: { required }
+        password: { required, minLength: minLength(8) }
     },
     data: () => ({
         email: '',
         name: '',
         password: '',
         show1: false,
-        rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 8 || 'Минимальное значение 8 символов',
-        }
     }),
     computed: {
       nameErrors () {
@@ -77,10 +71,20 @@ export default {
         !this.$v.email.required && errors.push('E-mail обязательно')
         return errors
       },
+      passwordErrors () {
+        const errors = []
+        if (!this.$v.password.$dirty) return errors
+        !this.$v.password.minLength && errors.push('Пароль должно содержать не менее 8 символов')
+        !this.$v.password.required && errors.push('Имя обязательно.')
+        return errors
+      },
     },
     methods: {
-        onSubmit() {
-            this.$v.$touch()
+      submit() {
+            if (this.$v.$invalid) {
+                this.$v.$touch()
+                return
+            }
             this.$store.dispatch('login')
             this.$router.push('/profile')
         },
@@ -90,7 +94,7 @@ export default {
             this.email = ''
             this.password = ''
         },
-    }
+    },
 }
 </script>
 
